@@ -1,0 +1,20 @@
+version: "3"
+services:
+    maned-db:
+        container_name: maned-db
+        user: 1000:1000
+        image: mysql:8.0.32
+        command:
+            --max_allowed_packet=128M
+        volumes:
+            - ./files:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 123
+        networks:
+            - maned-network
+        ports:
+            - 3306:3306
+
+networks:
+    maned-network:
+        external: true
